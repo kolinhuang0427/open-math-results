@@ -61,3 +61,37 @@ None of these labels constitutes peer review, and each entry states what is not 
   - **Labelle (1996) print-only caveat (`AUDIT.md` §3.3):** J. Labelle, *"Paths in the Cartesian, triangular and hexagonal lattices"*, *Bull. ICA* 17 (1996), 47–61 is print-only and was not directly inspected, so we cannot attribute whether the single `-z^5` vs `+z^5` sign discrepancy originated in Labelle (1996) or in Deutsch's 2004 OEIS submission (though sibling sequences `A038577`, `A100692`, and `A100693` confirm Labelle's rooted-SAW strip definition).
   - Internal auditing and exact symbolic/finite computation are not external peer review.
 
+---
+
+### `dris-2202.08116-conj5.1` — Proof of Dris Conjecture 5.1 (`AsymptoticDensity2`)
+
+- **Summary**: Jose Arnaldo Bebita Dris conjectured that the set $A$ of positive integers $m$ satisfying $\gcd(m, \sigma(m^2)) = \gcd(m^2, \sigma(m^2))$ has asymptotic density $0$, after proving an upper bound of $7/9$ and citing an unproved heuristic of Aaron Meyerowitz. We proved this conjecture completely by combining a prime-power divisibility criterion for primes $p \equiv 1 \pmod 6$ with a finite CRT truncation separating main residue exclusions from bad sets where fewer than two root-of-unity primes $q \in \mathcal{Q}_p$ exactly divide $m$. Using Dirichlet's theorem on primes in arithmetic progressions and Chebyshev's inequality on finite CRT blocks to show each bad set has density $0$, and taking $k \to \infty$ via $\sum_{p \equiv 1 \pmod 6} 1/p = \infty$, we established $\overline{d}(A) = 0$ and hence $d(A) = 0$.
+- **Exact statement & source**:
+  - Source: Jose Arnaldo Bebita Dris, *"A new approach to odd perfect numbers via GCDs"*, `arXiv:2202.08116v1` (`main.tex`, Section 5, Conjecture 5.1 `\label{AsymptoticDensity2}`, lines 386–391; also Abstract lines 57–59; published in *Octogon Mathematical Magazine* 30(2), Oct 2022, pp. 883–895).
+  - Statement: *"The asymptotic density $\mathscr{A}$ of positive integers $m$ with $\gcd(m,\sigma(m^2))=\gcd(m^2,\sigma(m^2))$ satisfies $\mathscr{A} = 0$."*
+- **Label**: `written proof, internally audited` (supported by exact integer and `Fraction` verification of primary-source counts and Lemmas 1–3 in `notes/check-check-2.py`).
+- **Verification command**: `.venv/bin/python targets/dris-2202.08116-conj5.1/notes/check-check-2.py`
+- **Latest novelty receipt**: Gate 3 PASS (`2026-11-26T21:27:55Z`–`21:29:00Z`, `notes/novelty-gate3-watch-1.md`, `notes/novelty-gate3-watch-5.md`, `notes/novelty-gate3-watch-6.md`): checked all `watch/snapshots/**`, live `1337isnot1337/solved-conjectures`, GitHub code/repo/issue searches, live arXiv API (`2202.08116v1` unchanged), Zenodo API, and web search (with Gate 2 live Stack Exchange API check of MO `Q369441` / Meyerowitz heuristic Answer `369521` and OpenAlex `W4226357996` `cited_by_count: 0`; Gate 3 OpenAlex returned HTTP 429); 0 prior proofs found.
+- **What is not established**:
+  - Proves qualitative asymptotic density $d(A) = 0$ only, not an explicit quantitative decay rate for $|A \cap [1, X]| / X$ (which decays very slowly, $\approx 92.35\%$ at $X = 10^6$).
+  - Does not settle Dris's Section 7 conjecture that $\gcd(\sigma(q^k), \sigma(n^2)) \neq \gcd(n^2, \sigma(n^2))$ for odd perfect numbers $N = q^k n^2$.
+  - Internal audit and small-case exact checks are not formal peer review or a formal Lean proof.
+
+---
+
+### `oeis-A250917` — Proof of Mathar's 2020 D-Finite Recurrence for OEIS `A250917`
+
+- **Summary**: R. J. Mathar conjectured in 2020 that the coefficients $a(n)$ of the exponential generating function $F(x) = \exp(x C(x)^3)$, where $C(x) = (1 - \sqrt{1-4x})/(2x)$ is the Catalan generating function, satisfy an explicit order-5 polynomial-coefficient recurrence. We proved that this recurrence holds for all $n \ge 5$ (and also at $n = 3, 4$, while failing at $n = 0, 1, 2$) by translating it into a linear differential operator $L = \sum_{r=0}^5 Q_r(\theta) (d/dx)^{5-r}$ acting on $F(x)$. Working in the differential field $\mathcal{A} = \mathbb{Q}(x)[S]/(S^2 - (1-4x))$ with $S = \sqrt{1-4x}$, we showed symbolically in exact rational arithmetic that $L[F](x)/F(x) = 0$ identically on $|x| < 1/4$, forcing every Taylor coefficient of $L[F]$ to vanish.
+- **Exact statement & source**:
+  - Source: OEIS `A250917` (revision 20, 2025-03-15).
+  - Name: *"Expansion of e.g.f. exp( x*C(x)^3 ) where C(x) = (1 - sqrt(1-4*x))/(2*x) is the g.f. of the Catalan numbers, A000108."* (offset `0,3`).
+  - Conjecture (Formula section): *"Conjecture D-finite with recurrence: +2*a(n) +(-11*n+20)*a(n-1) +(n^3+9*n^2-116*n+164)*a(n-2) +(-4*n^4+35*n^3+n^2-317*n+342)*a(n-3) -6*(n-3)*(6*n^3-50*n^2+147*n-176)*a(n-4) +12*(n-5)*(2*n-9)*(n-3)*(n-4)*a(n-5)=0. - _R. J. Mathar_, Jan 25 2020"* (proved for its natural domain $n \ge 5$, as well as $n = 3, 4$; fails at $n = 0, 1, 2$).
+- **Label**: `written proof, internally audited` (supported by exact SymPy rational/polynomial verification of $L[F]/F = 0$ in $\mathcal{A}$ and series check through $n = 25$ in `notes/check-check-2.py`).
+- **Verification command**: `.venv/bin/python targets/oeis-A250917/notes/check-check-2.py`
+- **Latest novelty receipt**: Gate 3 PASS (`2026-11-26T21:37:27Z`–`21:56:30Z`, `notes/novelty-gate3-watch-1.md`, `notes/novelty-gate3-watch-5.md`, `notes/novelty-gate3-watch-6.md`): checked all `watch/snapshots/**`, live OEIS `A250917` (rev 20), live `1337isnot1337/solved-conjectures` & `trureturing`, GitHub code/repo/issue searches, live arXiv API, Zenodo API, and web search (with Gate 2 OpenAlex check confirming 0 hits; Gate 3 OpenAlex/Crossref/S2 returned HTTP 429); 0 prior proofs found.
+- **What is not established**:
+  - **Symbolic-computation & `joeis`/`gfis/OEIS-mat` near-miss caveats (`AUDIT.md` §4):** The algebraic cancellation $R(x, S) = (0, 0)$ in $\mathbb{Q}(x)[S]/(S^2 - (1-4x))$ relies on exact computer-algebra verification (`notes/check-check-2.py`) rather than a term-by-term hand expansion in `PROOF.md`. `gfis/OEIS-mat` (`holrec/rectopost.man`) and `archmageirvine/joeis` (`A250917.java`) record an unproved Maple `sumrecursion` order-3 recurrence guess on the OEIS binomial sum formula (of which Mathar's order-5 recurrence is a $\mathbb{Q}(n)$-left-multiple) without proof, creative-telescoping certificate, or equivalence proof to $\exp(x C(x)^3)$.
+  - Internal audit and SymPy exact symbolic verification are not formal peer review or a formal Lean proof.
+
+
+
