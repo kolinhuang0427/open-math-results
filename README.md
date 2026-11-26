@@ -1,6 +1,6 @@
 # Open Math — Verified Results
 
-This repository contains only the verified results and verification artifacts (exact-arithmetic Python verifiers, independent audit and novelty reports, and Lean 4 formalizations) extracted from [kolinhuang0427/open-math](https://github.com/kolinhuang0427/open-math).
+This repository contains verified mathematical results and verification artifacts (exact-arithmetic Python verifiers, independent audit and novelty reports, and Lean 4 formalizations).
 
 > **Note:** Internal auditing, exact computation, and formalization of primary-source definitions do not constitute external peer review. See [`RESULTS.md`](RESULTS.md) and each target's `AUDIT.md` for scope and caveats.
 
@@ -8,7 +8,7 @@ This repository contains only the verified results and verification artifacts (e
 
 | Target | Conjecture | Result | Independent Python Verifier | Lean 4 Formalization |
 |---|---|---|---|---|
-| [`ferrero-2511.16335-conj1.8`](targets/ferrero-2511.16335-conj1.8/COUNTEREXAMPLE.md) | Ferrero–Hall–Hogben–Hunnell–Small Conjecture 1.8 (`arXiv:2511.16335v1`, AJC 96(2) 2026) | **Refuted**: 12-vertex circulant $C_6[2K_1] \cong \operatorname{Circ}(12,\{1,5\})$ and infinite blowup family $C_6[r_0 K_1,\dots,r_5 K_1]$ ($r_i \ge 2$) | [`check-check-2.py`](targets/ferrero-2511.16335-conj1.8/notes/check-check-2.py) (stdlib only) | [`Ferrero251116335Conj18.lean`](lean/OpenMath/Ferrero251116335Conj18.lean) |
+| [`ferrero-2511.16335-conj1.8`](targets/ferrero-2511.16335-conj1.8/COUNTEREXAMPLE.md) | Ferrero–Hall–Hogben–Hunnell–Small Conjecture 1.8 (`arXiv:2511.16335v1`, AJC 96(2) 2026) | **Refuted**: 12-vertex circulant $C_6[2K_1] \cong \mathrm{Circ}(12,\{1,5\})$ and infinite blowup family $C_6[r_0 K_1,\dots,r_5 K_1]$ ($r_i \ge 2$) | [`check-check-2.py`](targets/ferrero-2511.16335-conj1.8/notes/check-check-2.py) (stdlib only) | [`Ferrero251116335Conj18.lean`](lean/OpenMath/Ferrero251116335Conj18.lean) |
 | [`wei-2310.17337-conj1.5`](targets/wei-2310.17337-conj1.5/COUNTEREXAMPLE.md) | Wei–Zhang–Zhao Conjecture 1.5 (`arXiv:2310.17337v1`) | **Refuted**: 12-vertex, 18-edge truncated tetrahedral graph at $k = 8$ ($\iota(G, C_8) = 2 > 19/10$), plus $GP(9,2)$ ($k = 14$) and $GP(11,2)$ ($k = 18$) | [`check-check-1.py`](targets/wei-2310.17337-conj1.5/notes/check-check-1.py) (stdlib only) | [`Wei231017337Conj15.lean`](lean/OpenMath/Wei231017337Conj15.lean) |
 
 Full statements, novelty receipts, and caveats (including the published DMAA journal version caveat for `arXiv:2310.17337v1`) are recorded in [`RESULTS.md`](RESULTS.md) and each target's `TARGET.md` and `AUDIT.md`.

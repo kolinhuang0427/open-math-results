@@ -2,7 +2,7 @@
 
 - **Helper:** `ferrero-audit-hlp` (for `@audit-1`)
 - **Timestamp (UTC):** 2026-11-26T20:17:00Z
-- **Overall Assessment:** **NO PRIOR RESOLUTION OR DRIFT FOUND** — Conjecture 1.8 remains open in both `arXiv:2511.16335v1` and the June 2026 revised *Australasian Journal of Combinatorics* published version; $C_6[2K_1] \cong \operatorname{Circ}(12, \{1,5\})$ is a genuine counterexample, and $k=6$ with $r_i \ge 2$ is sharp among $C_k[2K_1]$ ($4 \le k \le 8$) and $C_6[1,2,2,2,2,2]$.
+- **Overall Assessment:** **NO PRIOR RESOLUTION OR DRIFT FOUND** — Conjecture 1.8 remains open in both `arXiv:2511.16335v1` and the June 2026 revised *Australasian Journal of Combinatorics* published version; $C_6[2K_1] \cong \mathrm{Circ}(12, \{1,5\})$ is a genuine counterexample, and $k=6$ with $r_i \ge 2$ is sharp among $C_k[2K_1]$ ($4 \le k \le 8$) and $C_6[1,2,2,2,2,2]$.
 
 ---
 
@@ -12,7 +12,7 @@
   - Latest version is still **`2511.16335v1`** (`published`: `2025-11-20T13:15:25Z`, `updated`: `2025-11-20T13:15:25Z`), with empty `comment`, `journal_ref`, and `doi`.
 - **Published journal version (`ajc.maths.uq.edu.au/v96.p374` & OpenAlex `W4416550551`):**
   - Published in *Australasian Journal of Combinatorics*, **Vol. 96(2) (2026), pp. 374–394** (`https://ajc.maths.uq.edu.au/download/96/ajc_v96_p374-394.pdf`), marked *Received 23 Nov 2025; revised 2 June 2026*. OpenAlex records `cited_by_count: 0`.
-  - Direct text extraction from the AJC Vol. 96(2) PDF confirms that **Definition 1.5** (standard fast join), **Theorem 1.6**, **Conjecture 1.8** (*"Let $G$ be a connected graph. If $\overline{\operatorname{pt}}(G) = 1$, then $G$ is a standard fast join."*), and **Corollary 5.12** (concluding Section 5) appear verbatim unchanged in the revised June 2026 published article, with no erratum, remark, or refutation added.
+  - Direct text extraction from the AJC Vol. 96(2) PDF confirms that **Definition 1.5** (standard fast join), **Theorem 1.6**, **Conjecture 1.8** (*"Let $G$ be a connected graph. If $\overline{\mathrm{pt}}(G) = 1$, then $G$ is a standard fast join."*), and **Corollary 5.12** (concluding Section 5) appear verbatim unchanged in the revised June 2026 published article, with no erratum, remark, or refutation added.
   - Both Sage code URLs cited in Reference [8] (`https://aimath.org/~hogben/FixedPropTime.ipynb` and `https://aimath.org/~hogben/FixedPropTime_Sage.pdf`) return **HTTP 404**.
 
 ---
@@ -21,9 +21,9 @@
 
 - **OpenAlex & Crossref:**
   - OpenAlex `W4416550551` (`arXiv:2511.16335` / AJC Vol. 96(2)): `cited_by_count: 0`.
-  - OpenAlex 2024–2026 searches for `"zero forcing propagation time"`, `"fixed propagation time"`, `"standard fast join"`, and `"minimal zero forcing sets"` found no paper resolving Conjecture 1.8 or mentioning $C_6[2K_1]$ / $\operatorname{Circ}(12,\{1,5\})$. (Crossref returned HTTP 429 on the second query of our batch.)
+  - OpenAlex 2024–2026 searches for `"zero forcing propagation time"`, `"fixed propagation time"`, `"standard fast join"`, and `"minimal zero forcing sets"` found no paper resolving Conjecture 1.8 or mentioning $C_6[2K_1]$ / $\mathrm{Circ}(12,\{1,5\})$. (Crossref returned HTTP 429 on the second query of our batch.)
   - OpenAlex citation checks for foundational earlier works:
-    - Hogben et al. (2012), *"Propagation time for zero forcing on a graph"* (`arXiv:1410.4191`, DOI `10.1016/j.dam.2012.04.003`, 117 citations total, 28 in 2024–2026): checked TeX source `Proptime12.tex` of `arXiv:1410.4191`. Its $\operatorname{pt}(G)=1$ section treats *minimum* zero forcing sets ($\operatorname{pt}(G)$ and $\operatorname{PT}(G)$, e.g., $Q_s$ and universal-vertex attachments), not *minimal* zero forcing sets ($\overline{\operatorname{pt}}(G)$), and contains no mention of $C_6[2K_1]$ or $\operatorname{Circ}(12,\{1,5\})$.
+    - Hogben et al. (2012), *"Propagation time for zero forcing on a graph"* (`arXiv:1410.4191`, DOI `10.1016/j.dam.2012.04.003`, 117 citations total, 28 in 2024–2026): checked TeX source `Proptime12.tex` of `arXiv:1410.4191`. Its $\mathrm{pt}(G)=1$ section treats *minimum* zero forcing sets ($\mathrm{pt}(G)$ and $\mathrm{PT}(G)$, e.g., $Q_s$ and universal-vertex attachments), not *minimal* zero forcing sets ($\overline{\mathrm{pt}}(G)$), and contains no mention of $C_6[2K_1]$ or $\mathrm{Circ}(12,\{1,5\})$.
     - Brimkov & Carlson (2024), *"Minimal zero forcing sets"* (`arXiv:2204.01810`, *Australas. J. Combin.* 90:363–377): 6 citing works in OpenAlex; checked abstracts of `2403.03921` (*Zero forcing irredundant sets*), `2509.18486` (*Universal perspectives on irredundance for X-set parameters*), `10.1007/s00373-024-02827-z` (*Well-Forced Graphs*), plus `2609.35522v1` (McKay–Ray–Valliere, Sept 2026, PDF searched in memory — studies min-vs-max propagation discrepancy of *minimum* forcing sets, not fixed propagation time 1), `10.37236/12237` (Hogben et al., *E-JC* 2025, relaxed chronologies/PIPs), and `2608.27972` (*The forbidden structure for zero forcing number*). None address Conjecture 1.8 or $C_6[2K_1]$.
 - **arXiv API (`tools/arxiv_fetch.py`):**
   - `au:Ferrero AND all:"zero forcing"` (11 results) and `all:"zero forcing" AND all:"propagation time"` sorted by `submittedDate` (23 results, top 25 inspected): most recent relevant papers are `2609.35522v1`, `2602.16300v1`, `2512.01429v1`, and `2511.16335v1`; no resolution of Conjecture 1.8.
@@ -76,10 +76,10 @@ C_8[2K_1] (n=16): Z=10, Zbar=10, num_min=1024, pt_minimal=[2], pt_minimum=[2], p
 C_6[1,2,2,2,2,2] (n=11): Z=7, Zbar=7, num_min=96, pt_minimal=[1, 2], pt_minimum=[1, 2], proper_pts=[1, 2]
 ```
 Key takeaways:
-- **$k=4$:** $C_4[2K_1] \cong K_{4,4} = 4K_1 \vee 4K_1$, which **is** a standard fast join, so $\overline{\operatorname{pt}}=1$ does not refute Conjecture 1.8.
-- **$k=5, 7, 8$:** None of $C_5[2K_1]$ ($\overline{\operatorname{pt}}=2$), $C_7[2K_1]$ ($\overline{\operatorname{pt}}=3$), or $C_8[2K_1]$ ($\overline{\operatorname{pt}}=2$) have $\overline{\operatorname{pt}}=1$.
-- **$k=6$:** $C_6[2K_1]$ is the **unique** value among $4 \le k \le 8$ that has $\overline{\operatorname{pt}}=1$ while failing Definition 1.5 ($\overline{G}$ is connected and $G \not\cong K_{12}$).
-- **$C_6[1,2,2,2,2,2]$:** Has $\overline{\operatorname{pt}} = 2$ (minimal forcing sets realize both $1$ and $2$), confirming that $r_i \ge 2$ for *every* part $i \in \{0,\dots,5\}$ is essential.
+- **$k=4$:** $C_4[2K_1] \cong K_{4,4} = 4K_1 \vee 4K_1$, which **is** a standard fast join, so $\overline{\mathrm{pt}}=1$ does not refute Conjecture 1.8.
+- **$k=5, 7, 8$:** None of $C_5[2K_1]$ ($\overline{\mathrm{pt}}=2$), $C_7[2K_1]$ ($\overline{\mathrm{pt}}=3$), or $C_8[2K_1]$ ($\overline{\mathrm{pt}}=2$) have $\overline{\mathrm{pt}}=1$.
+- **$k=6$:** $C_6[2K_1]$ is the **unique** value among $4 \le k \le 8$ that has $\overline{\mathrm{pt}}=1$ while failing Definition 1.5 ($\overline{G}$ is connected and $G \not\cong K_{12}$).
+- **$C_6[1,2,2,2,2,2]$:** Has $\overline{\mathrm{pt}} = 2$ (minimal forcing sets realize both $1$ and $2$), confirming that $r_i \ge 2$ for *every* part $i \in \{0,\dots,5\}$ is essential.
 
 ### 4.3 Summary of Gate 2 Novelty Receipt Caveats (`novelty-gate2-watch-{1,5,6}.md`)
 - **`watch-1` (`novelty-gate2-watch-1.md`):** Did not check OpenAlex citing works (deferred to `watch-5`) or closed-access/unindexed repositories.
