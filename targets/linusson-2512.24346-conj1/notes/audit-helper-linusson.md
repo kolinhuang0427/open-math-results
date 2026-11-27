@@ -33,7 +33,7 @@ Exact returned metadata:
   > where $\lambda_i$ is the number of cells with hook-length smaller than to $k+1$ in the $i$th row of $\kappa.$ This corresponds to removing all boxes with hook-length greater than $k+1,$ and then sliding all cells to the left of the diagram.
   > The inverse of $\mathfrak{p}$, let us call it $\mathfrak{c}$, can be described by a simple sequential process. We start from the top row, $\lambda_{l(\lambda)}$, and move down to the bottom row sequentially. We mark the hook-lengths in the row in the current stage, say $\lambda_i \text{ for } i\leq l$. If we have a box with hook-length greater than or equal to $k+1$ in $\lambda_i$ we add boxes to the left of the diagram to all rows $\lambda_1,\ldots,\lambda_i$ until all cells already-present in $\lambda_i$ have hook-lengths less than or equal to $k.$
 - **§2.3 Definition 2.1 (`\label{weak order}`, lines 148–150) & bounded-partition weak cover (lines 158–161):**
-  > \begin{definition} \tn{(Weak order)} \label{weak order}
+  > \begin{definition} \text{(Weak order)} \label{weak order}
   > Let $\tau$ and $\kappa$ be $(k+1)$-cores. We say $\kappa$ precedes $\tau$ in the weak order, denoted by $\kappa \rightarrow_k \tau$ if and only if all cells in $\tau \setminus \kappa$ have the same content modulo $(k+1)$.
   > \end{definition}
   (And lines 158–161 define $\lambda \rightarrow_k \mu$ on $\mathcal{P}_k$ iff $|\mu|=|\lambda|+1, \lambda \subseteq \mu \text{ and }\lambda^{\omega_k} \subseteq \mu^{\omega_k}$.)
@@ -42,7 +42,7 @@ Exact returned metadata:
   - Lines 194–196: strong marked cover $(\kappa, \tau, c)$ iff $\kappa \Rightarrow_k \tau$ and $c$ is the content of the southeast-most cell of a connected component of $\kappa \setminus \tau$.
   - Definition `\ref{def:tab}` (lines 199–209): strong marked tableau of shape $\lambda \vdash n$ and weight $\beta = (\beta_1,\ldots,\beta_d)$ ($\sum \beta_i = n$) is a chain $\emptyset = \kappa^{(0)} \Rightarrow_k \kappa^{(1)} \Rightarrow_k \cdots \Rightarrow_k \kappa^{(n)} = \mathfrak{c}(\lambda)$ with markings $\{c_1,\ldots,c_n\}$ satisfying $c_{A_i+1} < c_{A_i+2} < \cdots < c_{A_i+\beta_{i+1}}$.
   - Lines 210–219 (`\eqref{strongkostka}`, `\eqref{strongdim}`):
-    > \[s_{\lambda}^{(k)}[X]=\sum_{T \tn{ is Strong}(\mathfrak{c}(\lambda))} x^T\]
+    > \[s_{\lambda}^{(k)}[X]=\sum_{T \text{ is Strong}(\mathfrak{c}(\lambda))} x^T\]
     > ...
     > \[s_{\lambda}^{(k)}=\sum_{\mu }\mathbf{K}_{\lambda \mu}^{(k)} m_{\mu}\]
     > ...
@@ -61,12 +61,12 @@ Exact returned metadata:
   > \noindent \textbf{$k$-rectangle property} (Theorem 40 of \cite{LM07}): For any partition $\lambda \in \mathcal{P}_k$ and $i \in [k],$
   > \[s_{\square_i} s^{(k)}_{\lambda} = s^{(k)}_{\lambda \cup \square_i}. \]
 - **§3.3 $\mathcal{R}_k$ and $P(\lambda,\mu)$ (lines 304–312):**
-  > \[\mathcal{R}_k:=\{\lambda \in \mathcal{P}_k \, : \, l_i(\lambda)\leq k-i \tn{ for all } i=1,\ldots,k\}. \]
+  > \[\mathcal{R}_k:=\{\lambda \in \mathcal{P}_k \, : \, l_i(\lambda)\leq k-i \text{ for all } i=1,\ldots,k\}. \]
   > Since $|\mathcal{R}_k|=k!$, we obtain a Markov chain on $k!$ partitions, and the transition probability for any $\lambda,\mu \in \mathcal{R}_k$ is given by
   > \[P(\lambda,\mu)= \frac{1}{ |\lambda|+1} \times \begin{cases}
-  >   d_{\mu}^{(k)} \slash d_{\lambda}^{(k)} & \tn{ if  }\lambda \rightarrow_k \mu, \\
-  >     d_{\Lambda}^{(k)} \slash d_{\lambda}^{(k)} & \tn{ if  }\lambda \rightarrow_k \Lambda = \mu \cup \square_i \tn{ for some }i \in [k],\\
-  >     0  & \tn{ otherwise}.
+  >   d_{\mu}^{(k)} \slash d_{\lambda}^{(k)} & \text{ if  }\lambda \rightarrow_k \mu, \\
+  >     d_{\Lambda}^{(k)} \slash d_{\lambda}^{(k)} & \text{ if  }\lambda \rightarrow_k \Lambda = \mu \cup \square_i \text{ for some }i \in [k],\\
+  >     0  & \text{ otherwise}.
   > \end{cases}\]
 - **Check of $k=1$ and $k=2$:**
   - **$k=1$:** $\mathcal{R}_1 = \{\emptyset\}$ ($|\mathcal{R}_1| = 1! = 1$), $\square_1 = (1)$, $\emptyset \to_1 (1) = \emptyset \cup \square_1$, $P(\emptyset,\emptyset) = \frac{d_{(1)}^{(1)}}{(0+1)d_\emptyset^{(1)}} = 1$. Note `Kplancherel.tex` line 633 specifies `for a fixed $k\geq 2$` in the $k$-conjugation proof, while `conj:complement` (line 644) has no explicit $k \ge 2$ qualifier; `PROOF.md` line 43 handles $k=1$ separately.
@@ -79,7 +79,7 @@ Exact returned metadata:
 - **Section 3.4 `conj:complement` (lines 641–645) verbatim:**
   > For a $\lambda\in\mathcal{R}_k$, let $\lambda^{\mathrm{comp}}\in\mathcal{R}_k$ be such that 
   > $\lambda \cup \lambda^{\mathrm{comp}} = (k-1,(k-2)^2,\ldots,i^{k-i},\ldots,2^{k-2},1^{k-1})$, that is $l_i(\lambda)+l_i(\lambda^{\mathrm{comp}})=k-i$.
-  >  \begin{conjecture} \label{conj:complement}\textnormal{(Symmetry of complements)}
+  >  \begin{conjecture} \label{conj:complement}\mathrm{(Symmetry of complements)}
   >    For all $\lambda\in\mathcal{R}_k$, $\pi(\lambda)=\pi(\lambda^{\mathrm{comp}}).$
   > \end{conjecture}
 - **Irreducibility, $R$-reversibility, or $w(\lambda)$ in `Kplancherel.tex`:**

@@ -1,5 +1,5 @@
 source: arXiv:2511.16335v1 (Daniela Ferrero, H. Tracy Hall, Leslie Hogben, Mark Hunnell, Ben Small, "Zero forcing propagation time intervals and graphs with fixed propagation time", published 2025-11-20)
-status: candidate
+status: reported
 owner: scout-7
 updated: 2026-11-26T20:05:00Z
 identifiers: 2511.16335, 2511.16335v1, Ferrero, Hall, Hogben, Hunnell, Small, standard fast join, fixed propagation time, PTbar, Conjecture 1.8
@@ -29,5 +29,5 @@ Conjecture 1.8 (`\label{c:std}`, lines 293-296):
   - `search_web` for `"2511.16335"` and `"PSD fast join" OR "standard fast join"` — only links to `arXiv:2511.16335v1`.
 - **Near misses:**
   - `trureturing/issues/8371`: attempted Conjecture 1.8, explicitly closed as terminal OPEN with no resolution and no computational scan.
-  - Paper itself (Theorem 5.10, Corollary 5.12): proves Conjecture 1.8 when $G$ is already a join of two graphs or when $\mathrm{Z}(G) \ge n-2$. Our counterexamples have connected complement (not a join) and $\mathrm{Z}(G) = n-4$.
+  - Paper itself (Theorem 5.10, Corollary 5.12): proves Conjecture 1.8 when $G$ is already a join of two graphs or when $\mathbb{Z}(G) \ge n-2$. Our counterexamples have connected complement (not a join) and $\mathbb{Z}(G) = n-4$.
 - **Not covered:** Private unpublished manuscripts or post-v1 journal galley changes not indexed on arXiv or GitHub.

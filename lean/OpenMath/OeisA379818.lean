@@ -38,7 +38,7 @@ lemma a007814_two_mul {n : ℕ} (hn : 0 < n) : a007814 (2 * n) = a007814 n + 1 :
     conv_lhs => rw [h, a007814]
     have heven : (2 * m + 1 + 1) % 2 = 0 := by omega
     have hdiv : (2 * m + 1 + 1) / 2 = m + 1 := by omega
-    rw [if_pos heven, hdiv]
+    rw [ite_eq_left heven, hdiv]
 
 lemma a007814_pow_two_mul_odd (r k : ℕ) : a007814 (2 ^ r * (2 * k + 1)) = r := by
   induction r with
@@ -84,13 +84,13 @@ lemma a025480_even (n : ℕ) : a025480 (2 * n) = n := by
     conv_lhs => rw [h, a025480]
     have heven : (2 * m + 1 + 1) % 2 = 0 := by omega
     have hdiv : (2 * m + 1 + 1) / 2 = m + 1 := by omega
-    rw [if_pos heven, hdiv]
+    rw [ite_eq_left heven, hdiv]
 
 lemma a025480_odd (n : ℕ) : a025480 (2 * n + 1) = a025480 n := by
   conv_lhs => rw [a025480]
   have hodd : ¬ ((2 * n + 1) % 2 = 0) := by omega
   have hdiv : (2 * n + 1) / 2 = n := by omega
-  rw [if_neg hodd, hdiv]
+  rw [ite_eq_right hodd, hdiv]
 
 lemma a025480_le (n : ℕ) : a025480 n ≤ n := by
   induction n using Nat.strong_induction_on with
@@ -143,7 +143,7 @@ lemma a379818_odd (n : ℕ) : a379818 (2 * n + 1) = a379818 n := by
   conv_lhs => rw [a379818]
   have hodd : (2 * n + 1) % 2 = 1 := by omega
   have hdiv : (2 * n + 1) / 2 = n := by omega
-  rw [if_pos hodd, hdiv]
+  rw [ite_eq_left hodd, hdiv]
 
 lemma a379818_even {n : ℕ} (hn : 0 < n) :
     a379818 (2 * n) =
@@ -156,7 +156,7 @@ lemma a379818_even {n : ℕ} (hn : 0 < n) :
     conv_lhs => rw [h, a379818]
     have heven : ¬ ((2 * m + 1 + 1) % 2 = 1) := by omega
     have hdiv : (2 * m + 1 + 1) / 2 = m + 1 := by omega
-    rw [if_neg heven]
+    rw [ite_eq_right heven]
     dsimp only
     rw [hdiv]
 

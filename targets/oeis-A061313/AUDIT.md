@@ -76,3 +76,21 @@ PASS
   - `targets/oeis-A061313/notes/novelty-gate3-watch-3.md` (`2026-11-27T00:25:29Z`, PASS)
   - `targets/oeis-A061313/notes/novelty-gate3-watch-5.md` (`2026-11-27T00:08:52Z`, PASS)
   - `targets/oeis-A061313/notes/novelty-gate3-watch-6.md` (`2026-11-27T00:21:13Z`, PASS)
+
+---
+
+## 5. Independent Lean Statement-Fidelity Audit (`audit-2`, `2026-11-27T09:02Z`)
+
+- **Auditor:** `audit-2`
+- **File Audited:** `lean/OpenMath/OeisA061313.lean` (798 lines, imported in `lean/OpenMath.lean`)
+- **Verdict:** **`PASS`**
+
+### Statement-Fidelity Verification Against Live Primary Sources
+Checked verbatim against live OEIS JSON (`A061313` rev. 58, `A007305`, `A007306`) and `targets/oeis-A061313/TARGET.md`:
+1. **`A061313` recurrence & operational shortest-path fidelity:** `a061313` implements `a(1) = 0`, `a(2n) = a(n) + 1`, `a(2n + 1) = a(n + 1) + 2` (`a061313_one`, `a061313_even`, `a061313_odd`). Moreover, `Step`, `ReachIn`, `reachIn_nonpos_stays_nonpos` (confirming intermediate states $\le 0$ cannot reach $n \ge 1$, so $\mathbb{Z}$-paths and $\mathbb{N}_{>0}$-paths coincide), and `a061313_is_min_steps` prove literal equivalence to the OEIS Name (*"Minimal number of steps to get from 1 to n by (a) subtracting 1 or (b) multiplying by 2"*).
+2. **`A007305` / `A007306` Stern–Brocot tree fidelity:** `fareyIntervals` constructs level-by-level mediant intervals on $[0, 1]$ starting from $[0/1, 1/1]$, `fareyIntervals_getElem_eq_sbMat` proves exact equality with `sbMat (2^L + j + 1)`, and `a007305`/`a007306`/`sternBrocotFrac` match live OEIS offset-0 sequences `0/1, 1/1, 1/2, 1/3, 2/3, 1/4, 2/5, 3/5, 3/4, ...`.
+3. **Canonical Hirzebruch continued fractions:** `hirzebruchEval` (`c - (hirzebruchEval rest)⁻¹`) and `IsCanonicalHirzebruch` (non-empty `c₀ :: rest` with `∀ c ∈ rest, 2 ≤ c`) match the standard canonical Hirzebruch–Jung (negative) continued fraction, with uniqueness over $\mathbb{Q}$ proved in `hirzebruch_canonical_unique`.
+4. **Main theorem & sole boundary exception:** `zabolotskii_conjecture_A061313` (`∃! cs`) and `zabolotskii_sum_eq` (`∀ cs`) prove `cs.sum = (a061313 n : ℤ) + 2` for every `n ≥ 2`, while `zabolotskii_boundary_exception_at_one` proves the unique canonical expansion at `n = 1` is `[1]` with sum `1 ≠ 2 = a061313 1 + 2`.
+5. **Hygiene:** Zero `sorry`, `admit`, `axiom`, `native_decide`, `unsafe`, or `implemented_by` (`decide` used only for pure kernel reduction on concrete small integers / $2 \times 2$ integer matrices).
+
+**Verification command for `@coordinator`:** `export PATH="$HOME/.elan/bin:$PATH" && cd lean && lake build OpenMath.OeisA061313 && lake env lean OpenMath/OeisA061313.lean`

@@ -72,3 +72,19 @@ Deep checks (`notes/audit-helper-a360949.md` §2, plus Gate 2 receipts `notes/no
 **PASS** — `"written proof, internally audited"`.
 
 - **Gate 3 Novelty Clearance (`2026-11-27T02:00Z`–`03:09Z`):** **PASS** across all four watcher receipts (`notes/novelty-gate3-watch-1.md`, `notes/novelty-gate3-watch-3.md`, `notes/novelty-gate3-watch-5.md`, `notes/novelty-gate3-watch-6.md`), covering live OEIS `A360949` rev. 15, Zenodo, `413` watch snapshots, `1337isnot1337/solved-conjectures`, `the-omega-institute/trureturing*`, `aliromman/math`, `KnowledgeSense/math`, `rainwangphy/aftd-platform`, `valyuAI/research`, `facebookresearch/atlas-lean`, `JENW1N/complete-math-solutions`, `TheJustinSunPrize/awards`, `GuillaumeBAUD-coder/open-math-agents`, `DomTheDeveloper/open-math-agents`, and `DomTheDeveloper/ProofPlaygrond`. Cleared for coordinator verification.
+
+---
+
+## 6. Lean 4 Statement-Fidelity Audit (`@audit-2`, `2026-11-27T09:29Z`) — **PASS**
+
+- **Lean module:** `lean/OpenMath/OeisA360949.lean` (1,257 lines; imported in `lean/OpenMath.lean` line 12)
+- **Primary sources verified verbatim against live OEIS JSON:**
+  - `A360949` (rev. 15, `2023-03-05`, offset `0,2`): `G.f. A(x) satisfies: 1 = Sum_{n>=0} (-x/2)^n * (A(x)^n + (-1)^n)^n.` Comment: `Conjecture: a(0) = 1, a(2*A161674(k) + 1) == 2 (mod 4) for k >= 1, otherwise a(n) == 0 (mod 4). A161674 lists positions n such that A010060(n) + A010060(n+2) = 1, where A010060 is the Thue-Morse sequence.`
+  - `A161674` (rev. 21, `2021-01-30`, offset `1,3`): `Positions n such that A010060(n) + A010060(n+2) = 1.`
+- **Statement-fidelity verification:**
+  - `hannaTerm` and `SatisfiesA360949Eq` faithfully formalize $1 = \sum_{n \ge 0} (-X/2)^n (A^n + (-1)^n)^n$ in $\mathbb{Q}[[X]]$ (with `coeff_hannaTerm_eq_zero_of_lt` proving all $n > k$ terms vanish at $[X^k]$).
+  - `existsUnique_a360949` and `coeff_ASeries` prove there is a unique solution `ASeries` in `PowerSeries ℚ` whose coefficients are the integers `a360949 : ℕ → ℤ`.
+  - `thueMorse` satisfies `t(0) = 0`, `t(2n) = t(n)`, `t(2n+1) = 1 - t(n)` (`A010060`), `IsA161674 m := thueMorse m + thueMorse (m + 2) = 1` is proved infinite (`setOf_isA161674_infinite`), and `a161674 k := Nat.nth IsA161674 (k - 1)` matches offset-1 `A161674` for all $k \ge 1$.
+  - `hanna_conjecture_A360949_A161674` (and `hanna_conjecture_A360949`) matches Hanna's OEIS conjecture verbatim: `a360949 0 = 1`, `a360949 (2 * a161674 k + 1) ≡ 2 [ZMOD 4]` for all `k ≥ 1`, and `a360949 n ≡ 0 [ZMOD 4]` for all other `n ≥ 1`.
+- **Hygiene audit:** `grep -nE 'sorry|admit|axiom |native_decide|unsafe|implemented_by|extern |partial '` matched only docstring line 20 (zero `sorry`, zero `admit`, zero custom `axiom`, zero `native_decide`, zero `unsafe`). All 4 main theorems (`existsUnique_a360949`, `coeff_ASeries`, `hanna_conjecture_A360949`, `hanna_conjecture_A360949_A161674`) are checked by `#print axioms` (lines 1252–1255).
+- **Verdict:** **PASS** (handed off directly to `@coordinator` for final `lake build` + `lake env lean` verification).

@@ -81,3 +81,19 @@ PASS
   - `targets/oeis-A379818/notes/novelty-gate3-watch-3.md` (`2026-11-27T00:25:29Z`, PASS)
   - `targets/oeis-A379818/notes/novelty-gate3-watch-5.md` (`2026-11-27T00:08:52Z`, PASS)
   - `targets/oeis-A379818/notes/novelty-gate3-watch-6.md` (`2026-11-27T00:21:13Z`, PASS)
+
+---
+
+## 5. Lean 4 Statement-Fidelity Audit (`lean/OpenMath/OeisA379818.lean`)
+
+- **Auditor:** `audit-1`
+- **Date (UTC):** `2026-11-27T08:53Z`
+- **Verdict:** **`PASS`** (upgrade eligible to `"Lean-checked"` once `@coordinator` verifies build/axioms directly)
+- **Statement-Fidelity Checks against Live OEIS `A379818` (rev 8), `A025480` (rev 235), `A007814` (rev 549):**
+  - `a007814` is proved identically equal to Mathlib's `n.factorization 2` (`a007814_eq_factorization`).
+  - `a025480` is proved to satisfy `a025480 (2 * n) = n` and `a025480 (2 * n + 1) = a025480 n` for all `n : ℕ` (`a025480_even`, `a025480_odd`).
+  - `a379818` is proved to satisfy `a379818 0 = 1`, `a379818 (2 * n + 1) = a379818 n`, and for `0 < n`, `a379818 (2 * n) = a379818 n + a379818 (n - 2 ^ a007814 n) + a379818 (2 * n - 2 ^ a007814 n) + a379818 (a025480 (n - 1))` (with all `ℕ` subtractions non-truncating since `2 ^ v_2(n) ≤ n` for `n > 0`).
+  - `kurkov_conjecture_A379818` matches Kurkov's conjecture verbatim for all `(m k : ℕ)` (`Finset.range (m + 1)` = `0..m`, with `choose_le_choose_add_two` proving non-truncating `ℕ` subtraction); `kurkov_conjecture_A379818_int` gives the equivalent `ℤ`-valued statement; `kurkov_conjecture_A379818_of_recurrence` proves the axiomatic version for any `a : ℕ → ℕ` satisfying the OEIS `A379818` recurrence using Mathlib's `Nat.factorization`.
+  - Audited all 346 lines of `lean/OpenMath/OeisA379818.lean`: zero `sorry`, zero custom `axiom`, zero `native_decide`, zero `unsafe`/`implemented_by`; `#print axioms` included for all three main theorems.
+- **Verification Command for `@coordinator`:**
+  `export PATH="$HOME/.elan/bin:$PATH" && cd lean && lake build OpenMath.OeisA379818 && lake env lean OpenMath/OeisA379818.lean`

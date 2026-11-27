@@ -91,3 +91,25 @@ Deep search across `413` watch snapshots, arXiv, OpenAlex, Crossref, Zenodo, web
 **PASS** — `"counterexample, verified by exact computation"`.
 
 - **Gate 3 Novelty Clearance (`2026-11-27T03:34Z`–`04:10Z`):** **PASS** across `notes/novelty-gate3-watch-1.md`, `notes/novelty-gate3-watch-3.md`, and `notes/novelty-gate3-watch-5.md` (`watch-3` co-covering `watch-6`), covering live arXiv `2210.14762v2`, OpenAlex citing cache, Zenodo, `470` snapshots, and all 15+ competing GitHub repos (confirming no paper/repo connects Knisley–Nigussie–Pór 2010 to word-representability or refutes Petyuk Conj 1). Cleared for coordinator verification.
+
+---
+
+## 6. Lean 4 Formalization Statement-Fidelity Audit
+
+- **Lean Auditor:** `audit-3` (independent Pro auditor)
+- **Audited UTC:** `2026-11-27T09:24Z`
+- **File Audited:** `lean/OpenMath/Petyuk221014762Conj1.lean` (imported on line 10 of `lean/OpenMath.lean`)
+- **Verdict:** **PASS** — Eligible for upgrade to `"Lean-checked"`.
+
+### Statement Fidelity vs. Primary Source (`arXiv:2210.14762v2`, `simplified_de_Bruijn_graphs__4_.tex`)
+1. **Alternation & word-representability (§1.1, lines 50–51):** `IsAlternating` (characterized by `isAlternating_iff_forall_ne`: adjacent entries distinct), `restrictPair w u v`, `Alternates w u v`, `Represents G w` (`(∀ v : V, v ∈ w) ∧ ∀ u v : V, u ≠ v → (G.Adj u v ↔ Alternates w u v)`), and `IsWordRepresentable G` match Petyuk §1.1 (and Kitaev–Lozin 2015) verbatim. Requiring `∀ v : V, v ∈ w` ensures every pair of distinct vertices occurs in `restrictPair w u v`, preventing vacuous alternation.
+2. **Simplified de Bruijn graph $S(n, k)$ (§1.2, lines 65–67):** Vertex type `Fin n → Fin k` represents $A^n$ ($|A| = k$); `DeBruijnArc u v` (`∀ (i : ℕ) (hi : i + 1 < n), u ⟨i + 1, hi⟩ = v ⟨i, by omega⟩`) encodes $x_1 x_2 \cdots x_n \to x_2 \cdots x_n x_{n+1}$; `simplifiedDeBruijn n k : SimpleGraph (Fin n → Fin k)` with `Adj u v := u ≠ v ∧ (DeBruijnArc u v ∨ DeBruijnArc v u)` removes orientations, removes self-loops, and merges parallel edges, matching §1.2 verbatim.
+3. **Conjecture 1 refutation (§4, line 123):** `not_petyuk_conjecture_1 : ¬ (∀ n k : ℕ, 4 ≤ n → 3 ≤ k → ¬ IsWordRepresentable (simplifiedDeBruijn n k))` is proved directly from `s43_wordRepresentable : IsWordRepresentable (simplifiedDeBruijn 4 3)`, which combines a full from-scratch proof of Halldórsson–Kitaev–Pyatkin's 3-colorable theorem (`threeColorable_isWordRepresentable`) with the kernel-checked proper 3-coloring (`s43_coloring_proper`). Also proves `s43_has_triangle`.
+
+### Build & Axiom Verification
+- Command:
+  ```sh
+  export PATH="$HOME/.elan/bin:$PATH" && cd lean && lake build OpenMath.Petyuk221014762Conj1 && lake env lean OpenMath/Petyuk221014762Conj1.lean
+  ```
+- Exit code `0`, build completed cleanly (zero `sorry`, zero `admit`, zero custom `axiom`, zero `native_decide`; only benign Mathlib module-system import notices).
+- `#print axioms` output confirmed `[propext, Classical.choice, Quot.sound]` exclusively for all six theorems (`isAlternating_iff_forall_ne`, `threeColorable_isWordRepresentable`, `s43_coloring_proper`, `s43_has_triangle`, `s43_wordRepresentable`, `not_petyuk_conjecture_1`).

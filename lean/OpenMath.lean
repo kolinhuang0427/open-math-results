@@ -5,5 +5,28 @@ import OpenMath.Dris220208116Conj51
 import OpenMath.OeisA386251
 import OpenMath.Li250512035Conj7
 import OpenMath.OeisA379818
+import OpenMath.OeisA061313
+import OpenMath.OeisA125790
+import OpenMath.Petyuk221014762Conj1
+import OpenMath.Ziller231015628Conj62
+import OpenMath.OeisA360949
+import OpenMath.OeisA394511
+import OpenMath.OeisA177259
+import OpenMath.OeisA177260
+import OpenMath.Bui250804602Conj81
+import OpenMath.Lau220814707Conj22
+import OpenMath.OeisA158960
+import OpenMath.Garrison240109497Conj52
+import OpenMath.Ciobanu260422375Conj1
+import OpenMath.Ivanov260708944Conj6
+import OpenMath.Reyes231016929Conj32
+import OpenMath.Gullerud220108490Conj54
+import OpenMath.Ackelsberg260412864Ques163
+import OpenMath.Ackelsberg260412864Ques164
+import OpenMath.Minac241101768Rem514
+import OpenMath.Vasilyev261120344Q73
+import OpenMath.Guo231015207Conj64
+import OpenMath.Kaul211205316Ques3
+import OpenMath.Kallat261040342Ques148
 
 -- Root module for OpenMath Lean 4 formalizations.

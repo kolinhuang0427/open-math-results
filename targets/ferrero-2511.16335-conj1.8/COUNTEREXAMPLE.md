@@ -5,7 +5,7 @@
 Let $G = C_6[2K_1] \cong \mathrm{Circ}(12, \{1, 5\})$ be the 12-vertex, 24-edge 4-regular bipartite graph on vertex set $\mathbb{Z}/12\mathbb{Z}$ with edges $\{i, i \pm 1 \bmod 12\}$ and $\{i, i \pm 5 \bmod 12\}$. Equivalently, partition $V(G)$ into six independent pairs $A_i = \{i, i+6\}$ for $i \in \mathbb{Z}/6\mathbb{Z}$, with all edges between $A_i$ and $A_{i+1 \bmod 6}$ (the lexicographic product $C_6[2K_1]$).
 
 1. **$G$ is connected:** The edges $\{i, i+1 \bmod 12\}$ form a Hamiltonian cycle.
-2. **$\overline{\mathrm{PT}}(G) = 1$:** Exhaustive check over all $2^{12} = 4096$ subsets of $V(G)$ shows that there are exactly $144$ minimal standard zero forcing sets, all of cardinality $\mathrm{Z}(G) = \overline{\mathrm{Z}}(G) = 8$, and every standard zero forcing set $B \subsetneq V(G)$ has $\mathrm{pt}(G, B) = 1$. Hence $\underline{\mathrm{PT}}(G) = \overline{\mathrm{PT}}(G) = 1$.
+2. **$\overline{\mathrm{PT}}(G) = 1$:** Exhaustive check over all $2^{12} = 4096$ subsets of $V(G)$ shows that there are exactly $144$ minimal standard zero forcing sets, all of cardinality $\mathbb{Z}(G) = \overline{Z}(G) = 8$, and every standard zero forcing set $B \subsetneq V(G)$ has $\mathrm{pt}(G, B) = 1$. Hence $\underline{\mathrm{PT}}(G) = \overline{\mathrm{PT}}(G) = 1$.
 3. **$G$ is not a standard fast join:** By Definition 1.5 of `arXiv:2511.16335v1`, a standard fast join of order $n \ge 2$ is either $K_n$ or a join $\bigvee_{i=1}^t G_i$ with $t \ge 2$ nonempty parts, which therefore has a disconnected complement $\overline{G}$. Here $G \not\cong K_{12}$ (it has 24 edges vs. 66), and $\overline{G}$ is 7-regular on 12 vertices, hence connected (indeed $\delta(\overline{G}) = 7 \ge 12/2$). Thus $G$ is not a join of two nonempty graphs and is not a standard fast join.
 
 ## Infinite Family and Proof
@@ -24,7 +24,7 @@ More generally, for any integers $r_0, r_1, r_2, r_3, r_4, r_5 \ge 2$, let $G = 
      - Symmetrically, if $O \not\subseteq S$, all of $S \cap O$ is forced in round 1; if $O \subseteq S$, none of $O$ is forced in round 1.
      - Therefore, if $E \not\subseteq S$ and $O \not\subseteq S$, then all of $W$ is forced in round 1, giving $\mathrm{pt}(G, B) = 1$. Otherwise, after round 1 the remaining white set corresponds to $S' \in \{E, O, E \cup O\}$, on which round 2 forces no additional vertices and propagation stalls, so $B$ is not a standard zero forcing set.
 
-Thus every standard zero forcing set $B \subsetneq V(G)$ satisfies $\mathrm{pt}(G, B) = 1$, and in particular $\overline{\mathrm{PT}}(G) = 1$ (with $\mathrm{Z}(G) = \overline{\mathrm{Z}}(G) = n - 4$).
+Thus every standard zero forcing set $B \subsetneq V(G)$ satisfies $\mathrm{pt}(G, B) = 1$, and in particular $\overline{\mathrm{PT}}(G) = 1$ (with $\mathbb{Z}(G) = \overline{Z}(G) = n - 4$).
 
 ## Verification
 

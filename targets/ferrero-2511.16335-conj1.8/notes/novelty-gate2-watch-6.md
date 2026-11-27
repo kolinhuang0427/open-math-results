@@ -31,7 +31,7 @@
 
 - `the-omega-institute/trureturing/issues/8371` (*"Research: fixed standard zero forcing time (Conjecture 1.8)"*, closed `2026-09-16T23:35:45Z`): Explicitly ended as `terminal OPEN` with no proof, no counterexample, no finite scan, and no project files changed.
 - `1337isnot1337/solved-conjectures/issues/323`: Open claim on the Boyer–Brimkov–English–Ferrero–Keller–Kirsch–Phillips–Reinhart path-extremal zero-forcing conjecture $z(G;k) \le z(P_n;k)$ — a completely different conjecture.
-- `arXiv:2511.16335v1` itself (Theorem 5.10, Corollary 5.12): Proves Conjecture 1.8 only when $G$ is already a join of two graphs or $\mathrm{Z}(G) \ge n-2$; leaves the general connected case (where $\overline{G}$ is connected and $\mathrm{Z}(G) = n-4$, as in $C_6[2K_1]$) open.
+- `arXiv:2511.16335v1` itself (Theorem 5.10, Corollary 5.12): Proves Conjecture 1.8 only when $G$ is already a join of two graphs or $\mathbb{Z}(G) \ge n-2$; leaves the general connected case (where $\overline{G}$ is connected and $\mathbb{Z}(G) = n-4$, as in $C_6[2K_1]$) open.
 - `arXiv:2609.35522v1` (McKay, Ray, Valliere, Sep 2026): Studies discrepancy between max and min propagation times of minimum zero forcing sets; does not characterize $\overline{\mathrm{PT}}(G) = 1$ or refute Conjecture 1.8.
 
 ## What Was Not Covered

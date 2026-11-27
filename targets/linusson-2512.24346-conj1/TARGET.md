@@ -12,7 +12,7 @@ identifiers: 2512.24346, linusson, ozdemir, k-Plancherel, TASEP, symmetry of com
 From `arXiv:2512.24346v1` (`Kplancherel.tex`, Section 3.4, lines 641–645):
 > For a $\lambda\in\mathcal{R}_k$, let $\lambda^{\mathrm{comp}}\in\mathcal{R}_k$ be such that 
 > $\lambda \cup \lambda^{\mathrm{comp}} = (k-1,(k-2)^2,\ldots,i^{k-i},\ldots,2^{k-2},1^{k-1})$, that is $l_i(\lambda)+l_i(\lambda^{\mathrm{comp}})=k-i$.
->  \begin{conjecture} \label{conj:complement}\textnormal{(Symmetry of complements)}
+>  \begin{conjecture} \label{conj:complement}\mathrm{(Symmetry of complements)}
 >    For all $\lambda\in\mathcal{R}_k$, $\pi(\lambda)=\pi(\lambda^{\mathrm{comp}}).$
 > \end{conjecture}
 

@@ -1,0 +1,11 @@
+# Check Report: `targets/schwob-2606.12129-conj8.7/` (`@check-2`)
+
+- **Verdict:** **PASS** (primary source fidelity, base case $D_4$, Coxeter/Bruhat/quotient characterizations, and all inductive case-elimination and splitting chains independently verified with pure integer arithmetic).
+- **Primary Source Fidelity:**
+  - Verified `targets/schwob-2606.12129-conj8.7/TARGET.md` and `PROOF.md` against `tools/.arxiv_cache/eprint/2606.12129/Middle_order.tex`: Section 8 **Conjecture 8.7** (`\label{cnj:Dtype}`, L910–913), **Proposition 3.8** (`\label{pr:covers}`, L291–294), **Proposition 4.1** (`\label{pr:rhombus}`, L316–322), **Theorem 4.13** (L491–497), **Definition 7.1** (L731–734), and $\omega$-sorting containment (L838).
+- **Independent Exact Verifier (`targets/schwob-2606.12129-conj8.7/notes/check-check-2.py`):**
+  - Command: `.venv/bin/python -u targets/schwob-2606.12129-conj8.7/notes/check-check-2.py` -> exit `0` (`PASS`; zero floating-point operations, zero `/` divisions).
+  - **§2 & $D_4$ base case:** Exhaustively checked **Lemma 1** across all $1,370$ upper-cover pairs and $1,370$ lower-cover pairs of the $192$ elements of $D_4$. Built all $15$ minuscule middle orders on $D_4$ ($5$ each with top split $s_0, s_1, s_3$) and verified right weak containment and **Proposition 4.1** upward/downward rhombus closure at every element.
+  - **§6–7.2 Quotients & Lemma 9:** Exhaustively checked the explicit characterizations of ${}^{J_{n-1}} D_n$, ${}^{J_0} D_n$, their join-irreducibles $\mathcal{J}$ (including the exact $n-2$ external elements $q_{(a,n)}$), and **Lemma 9** (unique common Bruhat upper cover propagation) for $n=4,5,6,7$ ($10/10, 36/36, 112/112, 320/320$).
+  - **§5–7.3 Lemmas 6, 7, 8, 10:** Step-by-step exact verification of every signed permutation, Coxeter length, Bruhat cover, length-2 interval diamond, unique/zero common cover, parabolic component, and Lemma 9 propagation chain (Cases `(B1)`, `(B2)`, `(G2)` $k=3$ and $4\le k\le n$, `(G1)` Part 1 $2\le a\le n-2$ and Part 2 $a=n-1$ for odd and even $n$) across all $n = 4, 5, \dots, 12$.
+- **Gate 2 Status:** PASS (`notes/novelty-gate2-watch-1.md`, `notes/novelty-gate2-watch-5.md`, `notes/novelty-gate2-watch-6.md`).

@@ -1,8 +1,8 @@
 ---
 source: https://oeis.org/A400888 (created 2026-10-15), https://oeis.org/A000361
-status: candidate
+status: reported
 owner: attack-2
-updated: 2026-11-27T02:52:57Z
+updated: 2026-11-27T08:04:00Z
 identifiers: [A400888, A000360, A000361, A284556, A002487, Gosper-Lafitte triangle, M. Jeremie Lafitte (Levitas)]
 ---
 
