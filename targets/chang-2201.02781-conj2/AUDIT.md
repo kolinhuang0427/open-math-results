@@ -1,0 +1,48 @@
+# Adversarial Audit Report (`audit-3`) — `targets/chang-2201.02781-conj2/`
+
+- **Verdict:** **PASS**
+- **Charter label:** `"written proof, internally audited"`
+- **Auditor:** `audit-3` (isolated audit; did not read `verify.py` or author scratch `notes/screen-*` / `notes/attack-*`)
+- **Audited at (UTC):** 2026-11-27 01:24 UTC
+- **Files inspected:** `TARGET.md`, `PROOF.md`, `notes/check-check-2.md`, `notes/check-check-2.py`, `notes/audit-helper-chang.md`, and primary sources `tools/.arxiv_cache/eprint/2201.02781/An_extension_on_nsdt-_coloring_of_graphs-arXiv.tex` (`arXiv:2201.02781v1`) and `tools/.arxiv_cache/eprint/2303.02611/123ConjectureRevisedVersion.tex` (Keusch, *J. Combin. Theory Ser. B* 166, 2024).
+
+---
+
+## 1. Primary-Source Fidelity & Bibliographic Verification
+
+- Directly verified `arXiv:2201.02781v1` (sole/latest version, 8 Jan 2022; exact authors: **Jing-zhi Chang, Chao Yang, Zhi-xiang Yin, Bing Yao** — note `check-check-2.md` line 9 had a minor first-name slip, whereas `TARGET.md` and `PROOF.md` are accurate):
+  - Standing convention (line 125): finite, undirected, simple, connected graphs.
+  - Definition 1 (lines 146–151): non-proper $k$-total coloring $f : V(G) \cup E(G) \to [1, k]$ with $\phi(x) = f(x) + \sum_{e \ni x} f(e) + \sum_{y \in N(x)} f(y)$; $\mathrm{fgndi}_{\sum}(G)$ is the minimum $k$ such that $\phi(x) \ne \phi(y)$ for every $xy \in E(G)$.
+  - Conjecture 2 (line 162, plus Abstract lines 113–114 and Section 1 lines 156–158): *"For every connected graph $G$ and $G$ is not $K_2$, $\mathrm{fgndi}_{\sum}(G) \le 3$."*
+  - **Note on $K_1$:** `PROOF.md` proves $\mathrm{fgndi}_{\sum}(G) \le 3$ for all finite simple connected graphs with $|V| \ge 3$ (matching lines 113–114 and 157–158 of `2201.02781v1`). For the sole remaining connected graph $G \ne K_2$, namely $K_1$ ($|V| = 1, E = \emptyset$), the adjacency condition holds vacuously with $f(v) = 1$, so $\mathrm{fgndi}_{\sum}(K_1) = 1 \le 3$ trivially (verified in `notes/check-check-2.py`).
+- **Exact reduction:** Setting $f(v) = 2$ for all $v \in V$ and $\omega(e) = f(e) \in \{1, 2, 3\}$ gives $\phi(x) = c(x) + s_\omega(x)$ with $c(x) = 2 + 2\deg_G(x) \in 2\mathbb{Z}_{\ge 1}$. When $|V| \ge 3$ and $G$ is connected, any leaf $x$ ($\deg_G(x) = 1$) has unique neighbor $y$ with $\deg_G(y) \ge 2$, so $c(x) = 4 < 6 \le c(y)$. Thus Conjecture 2 follows directly from Theorem 1 (Even-Offset 1-2-3 Theorem). *(Equivalently, $\phi(x) = 2 + \sum_{e \ni x}(\omega(e) + 2)$ corresponds to a $\{3, 4, 5\}$-edge-weighting.)*
+
+---
+
+## 2. Adversarial Line-by-Line Audit of `PROOF.md`
+
+Every lemma, orientation/sign convention, parity invariant, conflict-elimination branch, and graph-modification case in `PROOF.md` was verified independently:
+
+1. **Lemma 1 (lines 27–29):** Shortest path $p$ ensures alternating vertices on $p$ are independent; greedy extension along a connectivity ordering preserves independence of $R$ and connectivity of $G(R, V \setminus R)$. Airtight.
+2. **Lemma 2 (lines 31–33):** Max-flow min-cut on $H_{C, F, \sigma}$: any minimum $s$-$t$-cut $(A_H, B_H)$ of capacity $\ell < |F|$ with $F' := \{(u, v) \in \sigma : u \in A, v \in B\}$ (minor shorthand in line 33 writes $\{u, v\} \in F$) gives $|E_1| \le \ell - (|F| - |F'|) < |F'| \le |E_2|$, so toggling $B$-side vertices between $S$ and $T$ strictly increases cut size $|C''| = |C| - |E_1| + |E_2| > |C|$, contradicting maximality of $C$. Airtight.
+3. **Lemma 3 (lines 35–40):** Even $h(v) \ge 2$ guarantees $s(v_i) - 2k_i - 1 \ge 2 + 2(\deg_H(v_i) - k_i) - 1 \ge 1$ (every element of $S(v_i)$ is positive odd), with $k_i + 1$ choices in the target mod-4 class ($1 \pmod 4$ on $S$, $3 \pmod 4$ on $T$). Checked all four orientation/weight signs in Stage 1 + Stage 2 flow decomposition (after cancelling opposing arcs on $E(S, T)$ and internal cycles): flow conservation $\mathrm{out}_{ST}(u) - \mathrm{in}_{ST}(u) = \mathrm{in}_s(u) - \mathrm{out}_t(u)$ yields exact Stage-2 changes $+(\mathrm{in}_s - \mathrm{out}_t)$ on $S$ and $-(\mathrm{in}_s - \mathrm{out}_t)$ on $T$, producing exact net change $+2g(v_i)$ at $v_i$ and $0$ at $v_j$ in all four cases. Hence $|s_\omega(v_i) + h(v_i) - f(v_i)| = 1$. Airtight.
+4. **Lemma 4 (lines 42–44):** Spanning tree $T$ containing $p$ + bottom-up parity subset $E_o$ gives $|E_o(v)| \equiv \mathbf{1}_{v \in V_o} \pmod 2$. Checked $n_1, n_3 \ge 0$ for $\Delta = \alpha(v) - 2\deg(v) \in \{-1, 0, +1\}$, and checked path conditions (iv), (v), (vi): at $v_1, v_k \in B$, if the $p$-edge lies in $E_o$ then $n_3 \ge 1$ when $\Delta = +1$ and $n_1 \ge 1$ when $\Delta \in \{0, -1\}$; at internal $v_i \in B$, if both $p$-edges lie in $E_o$ then $|E_o(v_i)| \ge 2$ (even) or $\ge 3$ (odd), so $n_1, n_3 \ge 1$ in every case. Airtight.
+5. **Lemma 5 (lines 52–54):** Good partition $(R, B)$ has $|B|$ even, $h(v) = c(v) + 2\deg_R(v) \in 2\mathbb{Z}_{\ge 1}$, odd $\alpha(v) \in \{2\deg_R(v)\pm 1\}$ summing to even, $R' = \emptyset$, yielding $\phi_\omega = f$ (odd, proper on $E(B)$) on $B$ and even on independent $R$. Airtight.
+6. **Lemma 6 (lines 56–58):** Checked both parities of $|R'|$ ($|R'| \ge 2$; when odd, $u_0 \in N(v_0) \cap B$ gets $\alpha(u_0) = 2\deg_R(u_0)$ and $\omega_3(\{v_0, u_0\}) \in \{1, 3\}$, keeping $\phi_\omega(v_0)$ even and $\phi_\omega = f$ on $B$). Verified all three conflict-elimination subcases on $R' = \{v_1, \dots, v_k\}$ ($i' \le k - x$; $i' > k - x$ with $x < k$; and $x = k$, where $\phi_\omega(v_j) = \phi_\omega(v_0) + 2j - 2$ and raising only $\{v_0, v_2\}$ leaves $\phi'(v_0) = \phi(v_0) + 2$ unused). Airtight.
+7. **Lemma 7 (lines 60–66):** Checked all three $(\beta(v_1), \beta(v_k))$ cases ($(1,1)$, $(3,3)$, $(3,1)$), parity condition $|R'| + \sum \alpha(v) \equiv 0 \pmod 2$, and cycle reweighting along $p \cup \{v_0\}$: by (iv)/(vi) endpoint adjustments stay in $\{1, 2, 3\}$; by (v) every pair $(a, b) \in \{1,2,3\}^2$ with $a + b \in \{3, 4, 5\}$ admits at least one of $(+1, -1)$ or $(-1, +1)$ in $\{1,2,3\}^2$, so each internal $v_i \in B$ preserves $s_\omega(v_i)$ while every internal $v_j \in R$ changes by $(\pm 1) + (\pm 1) \in \{-2, 0, +2\}$ (staying even) and $u_0 \notin p$ is untouched. Airtight.
+8. **Lemma 8 & Exhaustive Cases 1–4 (lines 72–102):**
+   - Lemma 8: DFS tree of connected $G$ with $\delta(G) \ge 2$ has depth $\ge 2$; deepest leaf $x$ and parent $y$ leave $G - \{x, y\}$ connected (including $G = K_3$, where $G'' = K_1$, $R = \{z\}$, $B = \emptyset$ even, handled by Case 2.1).
+   - Case 1 ($\delta(G) = 1$): Uses $c(x) \le c(y)$ and $s_{\omega'}(y) \ge 1$ so $\phi_\omega(y) > \phi_\omega(x)$.
+   - Case 2 ($\deg_G(x) = \deg_G(y) = 2$): All 4 combinations of $|B| \bmod 2$ and $z_y \in R/B$ verified, including $z_x = z_y$ in the $|B|$ odd, $z_y \in R$ auxiliary-leaf construction (where $c'(z_y) = c(z_y) + 2$ and $\mu \in \{1, 3\}$).
+   - Cases 3 & 4 ($\deg_G(x) + \deg_G(y) > 4$, w.l.o.g. $\deg_G(x) \ge 3$): Verified every single branch for both $|B|$ odd (lines 89–94: $\deg_R = 0$, $\deg_R \ge 2$, joint $r_x = r_y = q$ triangle-reweighting, disjoint $r_x \ne r_y$ with $z_y \in R$ or $z_y \in B$ spanning-tree avoidance) and $|B|$ even (lines 95–101: both $\deg_R \ge 1$, $\deg_R(y) = 0$, $\deg_R(x) = 0$ subcases including line 101's auxiliary graph $\tilde{G}$ where $\{x, z_y\} \notin E(G)$ since $\deg_R(x) = 0$, $\deg_R(y) \ge 2$ keeps $\tilde{G}(R, B \cup \{x, y\})$ connected, and flipping $\omega(\tilde{e}) \mapsto 4 - \omega(\tilde{e})$ resolves the unique possible conflict $\{x, y\}$). Completely exhaustive and airtight.
+
+---
+
+## 3. Independent Exact Verification & Deep Prior-Art Check
+
+- **Independent verifier (`notes/check-check-2.py`):** Re-executed via `.venv/bin/python targets/chang-2201.02781-conj2/notes/check-check-2.py` — exit code `0`, `PASS` in `13.414s`. Exhaustively checks $K_1, K_2$, all $4 + 38 + 728 + 26{,}704$ labeled connected graphs on $n = 3..6$ plus $283$ larger graphs ($n = 7..16$), triggering all 18 proof branches and all 6 Lemma 6/7 sub-branches.
+- **Deep novelty check (`notes/audit-helper-chang.md` §2):**
+  - Checked Keusch (`arXiv:2303.02611v4`, *JCTB* 166, 2024): §5 line 426 mentions $\{a, a+1, a+2\}$-weightings for odd $a$ only as an unproved remark (*"We think that all arguments work..."*), and §5 line 428 leaves total weightings to future work.
+  - Checked all 57 OpenAlex citations of Keusch (*JCTB* 2024), arXiv through Nov 2026 (including Deng `arXiv:2602.06659v2`, Feb 2026, confirming universal 3-edge-weightability and list/shifted generalizations remain open for non-regular graphs), Crossref, Zenodo, watch snapshots (357 files), and competing GitHub repos (`aliromman/math`, `trureturing*`, `KnowledgeSense/math`, `1337isnot1337/solved-conjectures`, `openai/math`, `rainwangphy/aftd-platform`, `valyuAI/research`, `facebookresearch/atlas-lean`): **no prior proof of Chang et al. Conjecture 2 or of $\{3,4,5\}/\{2,3,4\}$-edge-weightability for general graphs found.** No `CONTESTED.md`.
+- **Gate 3:** Requested from `@watch-1 @watch-5 @watch-6` prior to final report to `@coordinator`.
+- **What is not established / caveats:** Internal adversarial audit + exhaustive exact verification on small/structured graphs, not peer review or a Lean formalization. Paywalled full text of Wen–Yue–Li–Lai (*Discrete Appl. Math.* 389, 2026, `10.1016/j.dam.2026.03.034`) and Chinese-language family-specific papers (`Cui et al. 2022/2023`, `Li & Wen 2024`) were not directly readable (Crossref refs and `Yue & Wen 2025 Axioms` indicate `DAM 389` treats proper `ftndi_{\Sigma}`, not non-proper `fgndi_{\sum} \le 3`, and does not cite Keusch `2303.02611` or `2201.02781`).
