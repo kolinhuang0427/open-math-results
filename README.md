@@ -1,10 +1,10 @@
 # Open Math — Verified Results
 
-This repository contains **154 verified mathematical results** and their verification artifacts (exact-arithmetic Python verifiers, independent adversarial audit and novelty reports, and **30 Lean 4 formalizations**).
+This repository contains **168 verified mathematical results** and their verification artifacts (exact-arithmetic Python verifiers, independent adversarial audit and novelty reports, and **30 Lean 4 formalizations**).
 
 > **Note:** Internal auditing, exact computation, and formalization of primary-source definitions do not constitute external peer review. See [`RESULTS.md`](RESULTS.md) and each target's `AUDIT.md` for full statements, scope, novelty receipts, and caveats.
 
-## Summary of Results (154 Verified)
+## Summary of Results (168 Verified)
 
 | # | Target | Conjecture / Problem | Verdict | Independent Python Verifier | Lean 4 Formalization |
 |---|---|---|---|---|---|
@@ -162,6 +162,20 @@ This repository contains **154 verified mathematical results** and their verific
 | 152 | [`fernando-2606.01037-quesQ3`](targets/fernando-2606.01037-quesQ3/PROOF.md) | Complete Permutation-Polynomial Classification for $g_{n,q}$ (`Question 6.3`, `arXiv:2606.01037v1`) | **Solved** (`audited`) | [`check-check-1.py`](targets/fernando-2606.01037-quesQ3/notes/check-check-1.py) (stdlib) | — |
 | 153 | [`bilgici-2611.24516-q2`](targets/bilgici-2611.24516-q2/PROOF.md) | Non-Reducibility of Two-Term Sums $B_r(y)$ Modulo $19$ (`Question 2`, `arXiv:2611.24516v1`) | **Solved** (`audited`) | [`check-check-1.py`](targets/bilgici-2611.24516-q2/notes/check-check-1.py) (stdlib) | — |
 | 154 | [`caro-2312.08777-prob7`](targets/caro-2312.08777-prob7/PROOF.md) | Exact Determination $b(t) = 3$ for $t$-Neighbourhood Flip Graphs (`Section 7 Problem`, `arXiv:2312.08777v1`) | **Solved** (`audited`) | [`check-check-2.py`](targets/caro-2312.08777-prob7/notes/check-check-2.py) (stdlib) | — |
+| 155 | [`awan-2611.07303-q2`](targets/awan-2611.07303-q2/PROOF.md) | Awan–Miller–Nguyen–Senger–Wong Question 2 (`arXiv:2611.07303v2`, Convergence, Volume Formula $c_{h,k}$, and Non-Monotonicity of Non-$B_h$ Density) | **Solved** (`audited`) | [`check-check-1.py`](targets/awan-2611.07303-q2/notes/check-check-1.py) (stdlib) | — |
+| 156 | [`mora-2112.08768-conj`](targets/mora-2112.08768-conj/COUNTEREXAMPLE.md) | Mora–Souto-Salorio–Tarrío-Tobar Conjecture 21 (`arXiv:2112.08768v1`, $(k+1)$-Metric Dimension on 3D Grids) | **False** (`exact-checked`) | [`check-check-3.py`](targets/mora-2112.08768-conj/notes/check-check-3.py) (stdlib) | — |
+| 157 | [`fernando-2606.01037-quesQ4`](targets/fernando-2606.01037-quesQ4/PROOF.md) | Fernando–Kousik Question 6.4 (`arXiv:2606.01037v1`, Complete Permutation-Polynomial Classification for $g_{n,q}$) | **Solved** (`audited`) | [`check-check-2.py`](targets/fernando-2606.01037-quesQ4/notes/check-check-2.py) (`sympy`) | — |
+| 158 | [`gaevoy-2606.25895-src2-1`](targets/gaevoy-2606.25895-src2-1/PROOF.md) | Gaevoy Sections 2 & 6 Open Question (`arXiv:2606.25895v1`, Exponential Separation of $1\text{-SRC-II}$ from Resolution) | **Proved** (`audited`) | [`check-check-2.py`](targets/gaevoy-2606.25895-src2-1/notes/check-check-2.py) (stdlib) | — |
+| 159 | [`vereshchagin-2611.30127-q2`](targets/vereshchagin-2611.30127-q2/PROOF.md) | Vereshchagin Section 6 Open Questions 2 & 3 (`arXiv:2611.30127v1`, Algebrization Barriers for $\mathrm{MA}[m,a] \subset \mathrm{AM}[*, p(a)]$ and Knop's Conjecture 1) | **No (Negative)** (`audited`) | [`check-check-1.py`](targets/vereshchagin-2611.30127-q2/notes/check-check-1.py) (stdlib) | — |
+| 160 | [`dawar-2611.23541-sym-depth`](targets/dawar-2611.23541-sym-depth/PROOF.md) | Dawar–Dwivedi–Pago–Seppelt Section 1.2 Open Question (`arXiv:2611.23541v1`, Symmetric Depth-3 and Depth-4 Circuit Reductions and Orbit Bounds) | **Solved** (`audited`) | [`check-check-1.py`](targets/dawar-2611.23541-sym-depth/notes/check-check-1.py) (stdlib) | — |
+| 161 | [`kern-2611.32927-wlcs-multipartite`](targets/kern-2611.32927-wlcs-multipartite/PROOF.md) | Kern–Firbas–Sorge Section 5 Open Question (`arXiv:2611.32927v1`, $\mathsf{NP}$-Completeness of `WLCS` on $\{1^\star\}$-Bounded Complete Multipartite Switches) | **No (Negative)** (`audited`) | [`check-check-1.py`](targets/kern-2611.32927-wlcs-multipartite/notes/check-check-1.py) (stdlib) | — |
+| 162 | [`kern-2611.32927-oolcs-11connected`](targets/kern-2611.32927-oolcs-11connected/PROOF.md) | Kern–Firbas–Sorge Section 5 Open Question (`arXiv:2611.32927v1`, Polynomial-Time Algorithm for `WLCS` and `OOLCS` on $\{1,1\}$-Bounded Connected Switches) | **Proved** (`audited`) | [`check-check-1.py`](targets/kern-2611.32927-oolcs-11connected/notes/check-check-1.py) (stdlib) | — |
+| 163 | [`kern-2611.32927-gcs-dichotomy`](targets/kern-2611.32927-gcs-dichotomy/COUNTEREXAMPLE.md) | Kern–Firbas–Sorge Section 4 Conjecture (`arXiv:2611.32927v1`, Refutation of the `Global-Con Switching` Matroid-Switch Dichotomy) | **False** (`audited`) | [`check-check-1.py`](targets/kern-2611.32927-gcs-dichotomy/notes/check-check-1.py) (stdlib) | — |
+| 164 | [`cai-2610.02047-plog-reg`](targets/cai-2610.02047-plog-reg/PROOF.md) | Cai–Li Section 8 Open Question (`arXiv:2610.02047v1`, FPT-Sized Regular Resolution Refutations Parameterized by $\mathrm{tw}_{\mathrm{plog}}^*(F)$) | **Proved** (`audited`) | [`check-check-1.py`](targets/cai-2610.02047-plog-reg/notes/check-check-1.py) (stdlib) | — |
+| 165 | [`myrisiotis-2611.09020-edit-graph`](targets/myrisiotis-2611.09020-edit-graph/PROOF.md) | Myrisiotis Open Question `op:edit-graph` (`arXiv:2611.09020v1`, Connected Edit-Graph Fibers for an Adjunction-Universal Turing Machine) | **Proved** (`audited`) | [`check-check-1.py`](targets/myrisiotis-2611.09020-edit-graph/notes/check-check-1.py) (stdlib) | — |
+| 166 | [`say-2611.32633-bqtisp-sublog`](targets/say-2611.32633-bqtisp-sublog/PROOF.md) | Say Section 5 Open Question (`arXiv:2611.32633v1`, General Sublogarithmic Polynomial-Time Quantum Space Hierarchy $\mathsf{BQTISP}$) | **Proved** (`audited`) | [`check-check-1.py`](targets/say-2611.32633-bqtisp-sublog/notes/check-check-1.py) (stdlib) | — |
+| 167 | [`radici-2609.07769-open`](targets/radici-2609.07769-open/PROOF.md) | Radici–Sala Section 9 Open Problems (`arXiv:2609.07769v2`, Zero-Count Gap $\alpha_1(q,n,d) > \alpha_0(q,n,d)$ over $\mathbb{F}_3, \mathbb{F}_4, \mathbb{F}_5$) | **Proved** (`audited`) | [`check-check-1.py`](targets/radici-2609.07769-open/notes/check-check-1.py) (stdlib) | — |
+| 168 | [`dobson-2611.13347-ising-clifford`](targets/dobson-2611.13347-ising-clifford/PROOF.md) | Dobson–Wang Section 5 Problem (3) (`arXiv:2611.13347v1`, Ancilla-Assisted Ising Anyon Braiding No-Go & Measurement-Assisted Clifford Equivalence) | **Solved** (`audited`) | [`check-check-1.py`](targets/dobson-2611.13347-ising-clifford/notes/check-check-1.py) (stdlib) | — |
 
 Full statements, proof summaries, novelty receipts, and caveats are recorded in [`RESULTS.md`](RESULTS.md) and each target's `TARGET.md` and `AUDIT.md`.
 
@@ -169,7 +183,7 @@ Full statements, proof summaries, novelty receipts, and caveats are recorded in 
 
 ### 1. Exact-Arithmetic Python Verifiers
 
-Every target directory includes both the finder's `verify.py` and an independent checker script under `notes/check-check-*.py` (93 of 154 independent checkers require Python 3.10+ standard library only; the remaining 61 use `sympy` and/or `mpmath`).
+Every target directory includes both the finder's `verify.py` and an independent checker script under `notes/check-check-*.py` (106 of 168 independent checkers require Python 3.10+ standard library only; the remaining 62 use `sympy` and/or `mpmath`).
 
 To run any single independent verifier:
 
@@ -177,7 +191,7 @@ To run any single independent verifier:
 python3 targets/<target-id>/notes/check-check-*.py
 ```
 
-To run all 154 independent verifiers:
+To run all 168 independent verifiers:
 
 ```bash
 for s in targets/*/notes/check-check-*.py; do
@@ -241,7 +255,7 @@ All 30 formalizations imported in [`lean/OpenMath.lean`](lean/OpenMath.lean) com
 │   ├── lean-toolchain
 │   ├── OpenMath.lean
 │   └── OpenMath/        # 30 verified Lean 4 modules
-└── targets/             # 154 verified target directories
+└── targets/             # 168 verified target directories
 ```
 
 Each target directory contains `TARGET.md`, `COUNTEREXAMPLE.md` or `PROOF.md`, `AUDIT.md`, `verify.py`, and `notes/` (independent checker script and report, audit helper/ruling notes where applicable, and Gate 2/3 novelty receipts).
